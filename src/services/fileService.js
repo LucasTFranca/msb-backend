@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { StatusCodes } = require('http-status-codes');
 const errorConstructor = require('../utils/function/errorHandler');
 
 const getFileVerification = (name) => {
@@ -6,7 +7,7 @@ const getFileVerification = (name) => {
 
   const file = fs.readFileSync(`${__dirname}/../files/${name}`);
 
-  if (!file) throw errorConstructor('File not found');
+  if (!file) throw errorConstructor(StatusCodes.NOT_FOUND, 'File not found');
 };
 
 module.exports = {
