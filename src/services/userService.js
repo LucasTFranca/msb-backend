@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { userInsert } = require('../models/userModels');
+const { userInsert, findAllUsers } = require('../models/userModels');
 const errorConstructor = require('../utils/function/errorHandler');
 const { userSchema } = require('../utils/schemas');
 
@@ -11,6 +11,13 @@ const createUserVerification = async (user) => {
   await userInsert(user);
 };
 
+const usersVerification = async () => {
+  const users = await findAllUsers();
+
+  return users;
+};
+
 module.exports = {
   createUserVerification,
+  usersVerification,
 };

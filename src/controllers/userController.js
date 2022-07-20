@@ -1,4 +1,5 @@
-const { createUserVerification } = require('../services/userService');
+const { StatusCodes } = require('http-status-codes');
+const { createUserVerification, usersVerification } = require('../services/userService');
 
 const createUser = async (req, res, next) => {
   try {
@@ -6,7 +7,17 @@ const createUser = async (req, res, next) => {
 
     await createUserVerification(user);
 
-    return res.status(201).json({ message: 'User Created!' });
+    return res.status(StatusCodes.CREATED).json({ message: 'User Created!' });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await usersVerification();
+
+    return res.status(StatusCodes.OK).json(users);
   } catch (error) {
     return next(error);
   }
@@ -14,4 +25,5 @@ const createUser = async (req, res, next) => {
 
 module.exports = {
   createUser,
+  getAllUsers,
 };
