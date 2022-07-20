@@ -6,4 +6,4 @@ userRouter.post('/');
 
 userRouter.get('/');
 
-export default userRouter;
+module.exports = userRouter;
