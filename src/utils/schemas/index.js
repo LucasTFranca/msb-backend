@@ -6,6 +6,7 @@ const userSchema = Joi.object({
   phone: Joi.string().required(),
   message: Joi.string().required(),
   url: Joi.string().required(),
+  fileName: Joi.string().required(),
 });
 
 module.exports = {
